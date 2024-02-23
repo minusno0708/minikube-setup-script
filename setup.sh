@@ -15,4 +15,9 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 apt update
 apt install docker-ce docker-ce-cli containerd.io
 
+# Be able to run Docker without sudo
+groupadd docker
+gpasswd -a $USER docker
+systemctl restart docker
+
 rm -rf $tmpDownloadDir
